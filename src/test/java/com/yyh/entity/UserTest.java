@@ -38,7 +38,7 @@ public class UserTest {
 	public void test() {
 		Date date = new Date();
 		Map<String, User> m = new HashMap<>();
-		for (int i = 1; i <= 100000; i++) {
+		for (int i = 1; i <= 10; i++) {
 			User user = new User();
 			user.setId(i);
 			user.setName(StringUtil.generateChineseName());
@@ -72,12 +72,12 @@ public class UserTest {
 			c.add(Calendar.YEAR,52 );
 			Date time2 = c.getTime();
 			user.setBirthday(DateUtil.random(time, time2));
-			
-			m.put("user_"+i, user);
+			redisTemplate.opsForValue().set("user"+i, user);
+			//m.put("user_"+i, user);
 			
 			
 		}
-		redisTemplate.opsForHash().putAll("user", m);
+	//	redisTemplate.opsForHash().putAll("user", m);
 		Date date2 = new Date();
 		long l2 = date2.getTime();
 		long l1 = date.getTime();

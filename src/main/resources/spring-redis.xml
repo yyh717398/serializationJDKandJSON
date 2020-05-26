@@ -58,11 +58,14 @@
 		<property name="connectionFactory"
 			ref="jedisConnectionFactory" />
 		<!-- 配置key的序列化方式 -->
-		<property name="keySerializer" ref="genericJackson2JsonRedisSerializer" />
+		<property name="keySerializer" ref="stringRedisSerializer" />
 		
 		<!-- 配置value的序列化方式采用序列化 -->
 		<property name="valueSerializer" ref="genericJackson2JsonRedisSerializer"/>
-		
+		<!-- 配置hashkey的序列化方式 -->
+		<property name="hashKeySerializer" ref="stringRedisSerializer" />
+		<!-- 配置hashvalue的序列化方式采用json的序列化 -->
+		<property name="hashValueSerializer" ref="genericJackson2JsonRedisSerializer"/>
 		<!--开启事务 -->
 		<property name="enableTransactionSupport" value="true"></property>
 	</bean>
